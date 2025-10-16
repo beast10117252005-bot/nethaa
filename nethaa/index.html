@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Welcome Back, My Love!</title>
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: 'Arial', sans-serif;
+        background: linear-gradient(to right, #ff9a9e, #fad0c4);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        overflow: hidden;
+        text-align: center;
+    }
+
+    h1 {
+        font-size: 3rem;
+        color: #fff;
+        margin-bottom: 10px;
+    }
+
+    p {
+        font-size: 1.5rem;
+        color: #fff;
+        margin: 20px 0;
+    }
+
+    button {
+        padding: 15px 30px;
+        font-size: 1.2rem;
+        border: none;
+        border-radius: 10px;
+        background-color: #fff;
+        color: #ff6f91;
+        cursor: pointer;
+        transition: transform 0.3s, opacity 0.5s;
+    }
+
+    button:hover {
+        transform: scale(1.1);
+    }
+
+    .hidden {
+        display: none;
+    }
+
+    .photo {
+        margin-top: 20px;
+        width: 300px;
+        border-radius: 20px;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        transition: transform 1s, opacity 1s;
+        cursor: pointer;
+        opacity: 0;
+    }
+
+    .photo.show {
+        transform: scale(1.1) rotate(-3deg);
+        opacity: 1;
+    }
+
+    .heart {
+        position: absolute;
+        font-size: 2rem;
+        color: red;
+        animation: float 3s linear infinite;
+    }
+
+    @keyframes float {
+        0% {
+            transform: translateY(0) scale(1);
+            opacity: 1;
+        }
+        100% {
+            transform: translateY(-500px) scale(0.5);
+            opacity: 0;
+        }
+    }
+
+    .loveText {
+        font-size: 1.5rem;
+        color: #fff;
+        margin-top: 40px; 
+        min-height: 50px;
+        font-weight: bold;
+    }
+</style>
+</head>
+<body>
+    <h1>Welcome Back da nethaaa! ❤️</h1>
+    <button id="surpriseButton" onclick="showSurprise()">Enna Press nethuuuuuuu maaaaa</button>
+
+    <div id="surprise" class="hidden">
+        <img src="./images/WhatsApp Image 2025-10-16 at 7.25.54 PM.jpeg" alt="Cute surprise" class="photo" id="photo">
+        <div class="loveText" id="loveText"></div>
+    </div>
+
+   
+    <audio id="loveAudio" src="audio/Perfect - 320Kbps-(Mr-Jat.in).mp3"></audio>
+
+<script>
+    const loveMessage = "The best thing to hold onto in life is youu da nethaaaaaa ❤️,its been 14 days 16 hours , 28minutes to see you again after your longest tour daaa chellooooo";
+
+    function showSurprise() {
+        document.getElementById('surprise').classList.remove('hidden');
+        document.getElementById('photo').classList.add('show');
+        
+       
+        const button = document.getElementById('surpriseButton');
+        button.style.transition = "opacity 1s";
+        button.style.opacity = 0;
+        setTimeout(() => { button.style.display = "none"; }, 1000);
+
+        createHearts(30); 
+        playAudio();
+        typeLoveText();
+    }
+
+    function createHearts(num) {
+        for(let i = 0; i < num; i++){
+            const heart = document.createElement('div');
+            heart.classList.add('heart');
+            heart.style.left = Math.random() * window.innerWidth + 'px';
+            heart.style.animationDuration = (2 + Math.random() * 3) + 's';
+            heart.style.fontSize = (20 + Math.random() * 30) + 'px';
+            heart.innerText = '❤️';
+            document.body.appendChild(heart);
+            setTimeout(() => { heart.remove(); }, 5000);
+        }
+    }
+
+    function playAudio() {
+        const audio = document.getElementById('loveAudio');
+        audio.play();
+    }
+
+    function typeLoveText() {
+        const textElement = document.getElementById('loveText');
+        let index = 0;
+        textElement.innerHTML = "";
+        const interval = setInterval(() => {
+            textElement.innerHTML += loveMessage.charAt(index);
+            index++;
+            if(index >= loveMessage.length) clearInterval(interval);
+        }, 70); 
+    }
+</script>
+</body>
+</html>
